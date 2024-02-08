@@ -1,13 +1,13 @@
 {
-    "image1": {
-        "data": "hwQQABAAAAAA//8AAAAAwAAvIgAAAADM8C8iAAAAAMzwIiIAAAAAzPAiIgAAAADM/yIiAAAAAMwiIiIAAAAA7szMzMzP7yzu3d3dvS8vLiIAAAAAAAAgIgAAAAAAAAAiAAAAAAAAACQAAAAAAAAAQgAAAAAAAAAiAAAAAAAAAO4AAAAAAAAA4A==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "flag"
-    },
     "image2": {
         "data": "hwQQABAAAAAAAAAAAMD/AADA/A8AHGEPAGx398AXEcbAd2x3fxcRwWx39ncsEhHBfHdmd3x3EcF8d2Z3fGcWwXx39md8/GbBfHdsx2fPbMFsd3d3x8xmxsB3d3f2ZmbGAGx3Z39nZvYAwPz/d2fGDwAAAMB3xv8AAAAAAHwMAAAAAAAAwAwAAA==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "snake"
+    },
+    "image1": {
+        "data": "hwQQABAAAAAA//8AAAAAAAAv8gAAAAAA8C/yAAAAAADwIg8AAAAAAPAiDwAAAAAA8CLyAAAAAADwIvIAAAAA4MXMzMzMzMzs1d3d3d3d3e0AAAAAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "flag"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",

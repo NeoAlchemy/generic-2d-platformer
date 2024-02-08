@@ -3,25 +3,6 @@ namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "image1":
-            case "flag":return img`
-. . . . . f 2 c d . . . . . . . 
-. . f f f f 2 c d . . . . . . . 
-f f f 2 2 2 2 c d . . . . . . . 
-f 2 2 2 2 2 2 c d . . . . . . . 
-f 2 2 2 2 2 2 c d . . . . . . . 
-f 2 2 2 2 2 2 c d . . . . . . . 
-. . . . . . . c d . . . . . . . 
-. . . . . . . c b . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . c 2 . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . e 2 . . . . . . . 
-. . . . . . . c e . . . . . . . 
-. . . . . . . 2 2 2 . . . . . . 
-. c c c c c e e 2 2 2 4 2 2 e . 
-c c c c c c e e 2 2 2 2 4 2 e e 
-`;
             case "image2":
             case "snake":return img`
 . . . . c c c c c c . . . . . . 
@@ -40,6 +21,25 @@ f 1 1 1 1 1 6 6 c 6 6 6 6 f . .
 f 6 1 1 1 1 1 6 6 6 6 6 c f . . 
 . f 6 1 1 1 1 1 1 6 6 6 f . . . 
 . . c c c c c c c c c f . . . . 
+`;
+            case "image1":
+            case "flag":return img`
+. . . . . . . 5 5 . . . . . . . 
+. . f f f f f c d . . . . . . . 
+f f f 2 2 2 2 c d . . . . . . . 
+f 2 2 2 2 2 2 c d . . . . . . . 
+f 2 2 f f 2 2 c d . . . . . . . 
+f f f . . f f c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . . c d . . . . . . . 
+. . . . . . e e e e . . . . . . 
 `;
         }
         return null;

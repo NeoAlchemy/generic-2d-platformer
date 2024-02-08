@@ -1,11 +1,174 @@
 namespace SpriteKind {
     export const Goal = SpriteKind.create()
+    export const ChangingForest = SpriteKind.create()
 }
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     if (sprite.isHittingTile(CollisionDirection.Bottom)) {
         jumpCount = 0
     }
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (isGirl) {
+        isGirl = 0
+    } else {
+        isGirl = 1
+    }
+})
+function createForest (col1: number, col2: number, col3: number) {
+    treesA = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ...........ff..........8
+        ..........f88f........86
+        .........ff88ff......886
+        .........f8888f......866
+        ........f888888f....8666
+        ......ff88888888ff886666
+        .....f888888888888666666
+        .....ff88888888888866666
+        .....f888888888888666666
+        ....f88ff88888ff86688666
+        ....ffff88fff88f88886688
+        .....f8f8ff8ff8f88686886
+        ....f88fff88ffff86688866
+        ....f8ffff8fffff86888868
+        ....fff88ffffff888866888
+        ....f888ffff8fff86668888
+        ...f888ff8f88f8866688686
+        ..f8888888888f8666666666
+        .f88f8888888886686666666
+        .fff88888888888866666666
+        .ff888888888888666666666
+        ..ff88f888f88f8866866686
+        ..f8ff88fff88f8688668886
+        .f88ff8ff8f8f86688688686
+        f88ff8ff88ff866886886688
+        ffff88f88fff888866866888
+        .ffffffffffff88888888888
+        .ff888ff88ff888666886688
+        .f888ff888ff886668866688
+        f888888888f8866666666686
+        fff888f88888888666866666
+        ..ffff88f888888888668666
+        .....f8ff88f888ff8688668
+        ......fff8fff88fff888688
+        .........ffeeff......88e
+        .........feeeef......fee
+        .........feeeef......fee
+        ........feeefeef....feee
+        ........fefeffef....fefe
+        `, SpriteKind.ChangingForest)
+    treesB = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        8..........ff..........8
+        68........f88f........86
+        688......ff88ff......886
+        668......f8888f......866
+        6668....f888888f....8666
+        666688ff88888888ff886666
+        666666888888888888666666
+        666668888888888888866666
+        666666888888888888666666
+        66888668f88888ff86688666
+        8668688888fff88f88886688
+        8868668f8ff8ff8f88686886
+        8888868fff88ffff86688866
+        88888888ff8fffff86888868
+        888668888ffffff888866888
+        68886668ffff8fff86668888
+        6868866688f88f8866688686
+        6866666688888f8666666666
+        666666666888886686666666
+        666666668688888866666666
+        666666666888888666666666
+        6866668666888f8866866686
+        6886866886688f8688668886
+        866888688888f86688688686
+        8866888868ff866886886688
+        88868688668f888866866888
+        88888668868ff88888888888
+        68868868688f888666886688
+        668666666688886668866688
+        666666666668866666666686
+        666668666888888666866666
+        666666888888888888668666
+        6668868ff88f888ff8688668
+        8668888ff8fff88fff888688
+        e88......ffeeff......88e
+        eef......feeeef......fee
+        eef......feeeef......fee
+        feef....feeefeef....feee
+        ffef....fefeffef....fefe
+        `, SpriteKind.ChangingForest)
+    treesC = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        8..........ff...........
+        68........f88f..........
+        688......ff88ff.........
+        668......f8888f.........
+        6668....f888888f........
+        666688ff88888888ff......
+        666666888888888888f.....
+        66666888888888888ff.....
+        666666888888888888f.....
+        66888668f88888fff88f....
+        8668688888fff88f8fff....
+        8868668f8ff8ff8f88f.....
+        8888868fff88fffff8f.....
+        88888888ff8fffffffff....
+        888668888ffffff88fff....
+        68886668ffff8fff888f....
+        6868866688f88f8ff888f...
+        6866666688888f888888f...
+        666666666888888888888f..
+        66666666868888888888f8f.
+        666666666888888888888ff.
+        6866668666888f8888f888f.
+        6886866886688ff8f88ff88f
+        866888688888f88fff8fffff
+        8866888868ffff88ffff8f..
+        88868688668ffff8f8ff88f.
+        88888668868ffffff88ff8f.
+        68868868688f8ff8ff8f8ff.
+        66866666668888f8888888ff
+        66666666666888888888888f
+        66666866688888888f888ff.
+        666666888888888888ffff..
+        6668868ff88f888ff8f.....
+        8668888ff8fff88ffff.....
+        e88......ffeeff.........
+        eef......feeeef.........
+        eef......feeeef.........
+        feef....feeefeef........
+        ffef....fefeffef........
+        `, SpriteKind.ChangingForest)
+    tiles.placeOnTile(treesA, tiles.getTileLocation(col1, 5))
+    tiles.placeOnTile(treesB, tiles.getTileLocation(col2, 5))
+    tiles.placeOnTile(treesC, tiles.getTileLocation(col3, 5))
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (jumpCount < maxNumOfJumps) {
         hero.vy = -150
@@ -13,80 +176,123 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    hero,
-    [img`
-        . . . . f f f f f f . . . . . . 
-        . . . f 2 f e e e e f f . . . . 
-        . . f 2 2 2 f e e e e f f . . . 
-        . . f e e e e f f e e e f . . . 
-        . f e 2 2 2 2 e e f f f f . . . 
-        . f 2 e f f f f 2 2 2 e f . . . 
-        . f f f e e e f f f f f f f . . 
-        . f e e 4 4 f b e 4 4 e f f . . 
-        . . f e d d f 1 4 d 4 e e f . . 
-        . . . f d d d d 4 e e e f . . . 
-        . . . f e 4 4 4 e e f f . . . . 
-        . . . f 2 2 2 e d d 4 . . . . . 
-        . . . f 2 2 2 e d d e . . . . . 
-        . . . f 5 5 4 f e e f . . . . . 
-        . . . . f f f f f f . . . . . . 
-        . . . . . . f f f . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f . . . . . . 
-        . . . f 2 f e e e e f f . . . . 
-        . . f 2 2 2 f e e e e f f . . . 
-        . . f e e e e f f e e e f . . . 
-        . f e 2 2 2 2 e e f f f f . . . 
-        . f 2 e f f f f 2 2 2 e f . . . 
-        . f f f e e e f f f f f f f . . 
-        . f e e 4 4 f b e 4 4 e f f . . 
-        . . f e d d f 1 4 d 4 e e f . . 
-        . . . f d d d e e e e e f . . . 
-        . . . f e 4 e d d 4 f . . . . . 
-        . . . f 2 2 e d d e f . . . . . 
-        . . f f 5 5 f e e f f f . . . . 
-        . . f f f f f f f f f f . . . . 
-        . . . f f f . . . f f . . . . . 
-        `,img`
-        . . . . f f f f f f . . . . . . 
-        . . . f 2 f e e e e f f . . . . 
-        . . f 2 2 2 f e e e e f f . . . 
-        . . f e e e e f f e e e f . . . 
-        . f e 2 2 2 2 e e f f f f . . . 
-        . f 2 e f f f f 2 2 2 e f . . . 
-        . f f f e e e f f f f f f f . . 
-        . f e e 4 4 f b e 4 4 e f f . . 
-        . . f e d d f 1 4 d 4 e e f . . 
-        . . . f d d d d 4 e e e f . . . 
-        . . . f e 4 4 4 e e f f . . . . 
-        . . . f 2 2 2 e d d 4 . . . . . 
-        . . . f 2 2 2 e d d e . . . . . 
-        . . . f 5 5 4 f e e f . . . . . 
-        . . . . f f f f f f . . . . . . 
-        . . . . . . f f f . . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f . . . . . . 
-        . . . f 2 f e e e e f f . . . . 
-        . . f 2 2 2 f e e e e f f . . . 
-        . . f e e e e f f e e e f . . . 
-        . f e 2 2 2 2 e e f f f f . . . 
-        . f 2 e f f f f 2 2 2 e f . . . 
-        . f f f e e e f f f f f f f . . 
-        . f e e 4 4 f b e 4 4 e f f . . 
-        . . f e d d f 1 4 d 4 e e f . . 
-        . . . f d d d d 4 e e e f . . . 
-        . . . f e 4 4 4 e d d 4 . . . . 
-        . . . f 2 2 2 2 e d d e . . . . 
-        . . f f 5 5 4 4 f e e f . . . . 
-        . . f f f f f f f f f f . . . . 
-        . . . f f f . . . f f . . . . . 
-        `],
-    100,
-    true
-    )
+    if (isGirl) {
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . f 4 4 f f f f . . . . . . 
+            . . f 4 5 5 4 5 f b f f . . . . 
+            . . f 5 5 5 5 4 e 3 3 b f . . . 
+            . . f e 4 4 4 e 3 3 3 3 b f . . 
+            . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+            . f 3 3 e e 3 b e 3 3 3 3 f . . 
+            . f 3 3 e e e f f 3 3 3 3 f . . 
+            . f 3 e e e f b f b b b b f . . 
+            . . f e 4 4 f 1 e b b b b f . . 
+            . . . f 4 4 4 4 f b b b b f f . 
+            . . . f e e e f f f b b b b f . 
+            . . . f d d d e 4 4 f b b f . . 
+            . . . f d d d e 4 4 e f f . . . 
+            . . f b d b d b e e b f . . . . 
+            . . f f 1 d 1 d 1 d f f . . . . 
+            . . . . f f b b f f . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . f 4 4 f f f f . . . . . . 
+            . . f 4 5 5 4 5 f b f f . . . . 
+            . . f 5 5 5 5 4 e 3 3 b f . . . 
+            . . f e 4 4 4 e 3 3 3 3 b f . . 
+            . f 3 3 3 3 3 3 3 3 3 3 3 f . . 
+            . f 3 3 e e 3 b e 3 3 3 3 f . . 
+            . f 3 3 e e e f f 3 3 3 3 f . . 
+            . . f e e e f b f b b b b f f . 
+            . . . e 4 4 f 1 e b b b b b f . 
+            . . . f 4 4 4 4 f b b b b b f . 
+            . . . f d d d e 4 4 b b b f . . 
+            . . . f d d d e 4 4 f f f . . . 
+            . . f d d d b b e e b b f . . . 
+            . . f b d 1 d 1 d d b f . . . . 
+            . . . f f f b b f f f . . . . . 
+            `],
+        100,
+        true
+        )
+    } else {
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d d 4 e e e f . . . 
+            . . . f e 4 4 4 e e f f . . . . 
+            . . . f 2 2 2 e d d 4 . . . . . 
+            . . . f 2 2 2 e d d e . . . . . 
+            . . . f 5 5 4 f e e f . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d e e e e e f . . . 
+            . . . f e 4 e d d 4 f . . . . . 
+            . . . f 2 2 e d d e f . . . . . 
+            . . f f 5 5 f e e f f f . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . . f f f . . . f f . . . . . 
+            `,img`
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d d 4 e e e f . . . 
+            . . . f e 4 4 4 e e f f . . . . 
+            . . . f 2 2 2 e d d 4 . . . . . 
+            . . . f 2 2 2 e d d e . . . . . 
+            . . . f 5 5 4 f e e f . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . f f f f f f . . . . . . 
+            . . . f 2 f e e e e f f . . . . 
+            . . f 2 2 2 f e e e e f f . . . 
+            . . f e e e e f f e e e f . . . 
+            . f e 2 2 2 2 e e f f f f . . . 
+            . f 2 e f f f f 2 2 2 e f . . . 
+            . f f f e e e f f f f f f f . . 
+            . f e e 4 4 f b e 4 4 e f f . . 
+            . . f e d d f 1 4 d 4 e e f . . 
+            . . . f d d d d 4 e e e f . . . 
+            . . . f e 4 4 4 e d d 4 . . . . 
+            . . . f 2 2 2 2 e d d e . . . . 
+            . . f f 5 5 4 4 f e e f . . . . 
+            . . f f f f f f f f f f . . . . 
+            . . . f f f . . . f f . . . . . 
+            `],
+        100,
+        true
+        )
+    }
 })
 function createFlag (col: number, row: number) {
     flag = sprites.create(assets.image`flag`, SpriteKind.Goal)
@@ -99,10 +305,15 @@ controller.left.onEvent(ControllerButtonEvent.Released, function () {
     animation.stopAnimation(animation.AnimationTypes.All, hero)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles10, function (sprite, location) {
-    info.changeLifeBy(-1)
-    pause(100)
-    setupLevel1()
-    music.play(music.melodyPlayable(music.wawawawaa), music.PlaybackMode.InBackground)
+    if (isInHole == 0) {
+        info.changeLifeBy(-1)
+        pause(100)
+        music.play(music.melodyPlayable(music.wawawawaa), music.PlaybackMode.InBackground)
+        tiles.placeOnTile(hero, tiles.getTileLocation(0, 6))
+        isInHole = 1
+    } else {
+        isInHole = 0
+    }
 })
 function setupGame () {
     scene.setBackgroundImage(img`
@@ -231,6 +442,101 @@ function setupGame () {
     info.setLife(3)
     maxNumOfJumps = 2
     jumpCount = 0
+    secondStage = 1
+}
+function createForest2 (col1: number, col2: number, col3: number) {
+    treegirla = sprites.create(img`
+        ....................................
+        ....................................
+        ....................................
+        ....................................
+        ....................................
+        ....................................
+        ....................................
+        ................86..................
+        ...........6688867886...............
+        ...........8666877688868............
+        ............868777767768............
+        .........688667777776688............
+        ........67767777777778666...........
+        .........6776667767666868...........
+        ..........866667667677688...........
+        .........8666666666667778...........
+        ........667766666666666676..........
+        .......67766667666776667776.........
+        ......886667776676777666688.........
+        .....67766777667767777666768........
+        ....6776666666777667776666776.......
+        .....8667776667766676677776776......
+        ......8777666666667776777776688.....
+        ....6887766776677677777777776776....
+        ..8866666677767777777777766666778...
+        .86666666777667767777766666776668...
+        ..88677666666777677677666667776668..
+        ..86776677666666666666667776666668..
+        886666677766667666666776677766668...
+        6668666676667766767767766677666668..
+        88866666666777677677667666666776668.
+        .86668866666766776776666667766666668
+        .86688666666666776666667667776666688
+        .668866666666666666666677666666688..
+        ..8866686666666666677667776666668...
+        ...866886666666666677667776666668...
+        ...86886668666666667666666666888....
+        ....88866886686666666666666668......
+        ......86886668666866668666868.......
+        ......88866688668866688866888.......
+        ........8888888688888ce868..........
+        ..............e88e88.ec.8...........
+        ...............eeee..e..............
+        ...............ceef.ce..............
+        ...............ceefcec..............
+        ...............feefce...............
+        ...............fceeec...............
+        ...............ffceec...............
+        `, SpriteKind.Player)
+    mushroompatch = sprites.create(img`
+        ........................
+        .....bbbbb..............
+        ....b33333bb............
+        ...b33331113b...........
+        ...b333311113b..........
+        ..b1133331113bc.........
+        .b11133333333bbb........
+        bb1133113333bbbc.bbbb...
+        cbb3311113bbddbcb3311b..
+        cbbbbddddbbdddcbb33113c.
+        .cbbbbddbbbddbbddb3333bc
+        ..ccbbbbbbbbccbddbbbddbc
+        ....cccccccb.ccbbbbbddbc
+        ......b1ddb....ccbbbbbc.
+        .....b11ddb.....bccccc..
+        .....b1ddbb.....bddb....
+        `, SpriteKind.Player)
+    singlemushroom = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . b b b b . . . . . . 
+        . . . . b b 3 3 3 3 b b . . . . 
+        . . . c b 3 3 3 3 1 1 b c . . . 
+        . . c b 3 3 3 3 3 1 1 1 b c . . 
+        . c b 1 1 1 3 3 3 3 1 1 3 c c . 
+        c b d 1 1 1 3 3 3 3 3 3 3 b b c 
+        c b b d 1 3 3 3 3 3 1 1 1 b b c 
+        c b b b 3 3 1 1 3 3 1 1 d d b c 
+        . c b b b d d 1 1 3 b d d d c . 
+        . . c c b b d d b b b b c c . . 
+        . . . . c c c c c c c c . . . . 
+        . . . . . b b d 1 1 b . . . . . 
+        . . . . . b d d 1 1 b . . . . . 
+        `, SpriteKind.Player)
+    tiles.placeOnTile(treegirla, tiles.getTileLocation(col1, 5))
+    tiles.placeOnTile(mushroompatch, tiles.getTileLocation(col2, 6))
+    tiles.placeOnTile(singlemushroom, tiles.getTileLocation(col3, 6))
+    createBlocks(36, 6)
+    createBlocks(37, 6)
+    createBlocks(37, 5)
 }
 function createEnemy (enemySprite: Sprite, col: number, row: number) {
     snake = enemySprite
@@ -365,80 +671,123 @@ scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
     }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    hero,
-    [img`
-        . . . . . . f f f f f f . . . . 
-        . . . . f f e e e e f 2 f . . . 
-        . . . f f e e e e f 2 2 2 f . . 
-        . . . f e e e f f e e e e f . . 
-        . . . f f f f e e 2 2 2 2 e f . 
-        . . . f e 2 2 2 f f f f e 2 f . 
-        . . f f f f f f f e e e f f f . 
-        . . f f e 4 4 e b f 4 4 e e f . 
-        . . f e e 4 d 4 1 f d d e f . . 
-        . . . f e e e 4 d d d d f . . . 
-        . . . . f f e e 4 4 4 e f . . . 
-        . . . . . 4 d d e 2 2 2 f . . . 
-        . . . . . e d d e 2 2 2 f . . . 
-        . . . . . f e e f 4 5 5 f . . . 
-        . . . . . . f f f f f f . . . . 
-        . . . . . . . f f f . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . f f f f f f . . . . 
-        . . . . f f e e e e f 2 f . . . 
-        . . . f f e e e e f 2 2 2 f . . 
-        . . . f e e e f f e e e e f . . 
-        . . . f f f f e e 2 2 2 2 e f . 
-        . . . f e 2 2 2 f f f f e 2 f . 
-        . . f f f f f f f e e e f f f . 
-        . . f f e 4 4 e b f 4 4 e e f . 
-        . . f e e 4 d 4 1 f d d e f . . 
-        . . . f e e e e e d d d f . . . 
-        . . . . . f 4 d d e 4 e f . . . 
-        . . . . . f e d d e 2 2 f . . . 
-        . . . . f f f e e f 5 5 f f . . 
-        . . . . f f f f f f f f f f . . 
-        . . . . . f f . . . f f f . . . 
-        `,img`
-        . . . . . . f f f f f f . . . . 
-        . . . . f f e e e e f 2 f . . . 
-        . . . f f e e e e f 2 2 2 f . . 
-        . . . f e e e f f e e e e f . . 
-        . . . f f f f e e 2 2 2 2 e f . 
-        . . . f e 2 2 2 f f f f e 2 f . 
-        . . f f f f f f f e e e f f f . 
-        . . f f e 4 4 e b f 4 4 e e f . 
-        . . f e e 4 d 4 1 f d d e f . . 
-        . . . f e e e 4 d d d d f . . . 
-        . . . . f f e e 4 4 4 e f . . . 
-        . . . . . 4 d d e 2 2 2 f . . . 
-        . . . . . e d d e 2 2 2 f . . . 
-        . . . . . f e e f 4 5 5 f . . . 
-        . . . . . . f f f f f f . . . . 
-        . . . . . . . f f f . . . . . . 
-        `,img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . f f f f f f . . . . 
-        . . . . f f e e e e f 2 f . . . 
-        . . . f f e e e e f 2 2 2 f . . 
-        . . . f e e e f f e e e e f . . 
-        . . . f f f f e e 2 2 2 2 e f . 
-        . . . f e 2 2 2 f f f f e 2 f . 
-        . . f f f f f f f e e e f f f . 
-        . . f f e 4 4 e b f 4 4 e e f . 
-        . . f e e 4 d 4 1 f d d e f . . 
-        . . . f e e e 4 d d d d f . . . 
-        . . . . 4 d d e 4 4 4 e f . . . 
-        . . . . e d d e 2 2 2 2 f . . . 
-        . . . . f e e f 4 4 5 5 f f . . 
-        . . . . f f f f f f f f f f . . 
-        . . . . . f f . . . f f f . . . 
-        `],
-    100,
-    true
-    )
+    if (isGirl) {
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . . . f f f f 4 4 f . . . 
+            . . . . f f b f 5 4 5 5 4 f . . 
+            . . . f b 3 3 e 4 5 5 5 5 f . . 
+            . . f b 3 3 3 3 e 4 4 4 e f . . 
+            . . f 3 3 3 3 3 3 3 3 3 3 f . . 
+            . . f 3 3 3 3 e b 3 e e 3 3 f . 
+            . . f 3 3 3 3 f f e e e 3 3 f . 
+            . . f b b b b f b f e e e 3 f . 
+            . . f b b b b e 1 f 4 4 e f . . 
+            . f f b b b b f 4 4 4 4 f . . . 
+            . f b b b b f f f e e e f . . . 
+            . . f b b f 4 4 e d d d f . . . 
+            . . . f f e 4 4 e d d d f . . . 
+            . . . . f b e e b d b d b f . . 
+            . . . . f f d 1 d 1 d 1 f f . . 
+            . . . . . . f f b b f f . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f 4 4 f . . . 
+            . . . . f f b f 5 4 5 5 4 f . . 
+            . . . f b 3 3 e 4 5 5 5 5 f . . 
+            . . f b 3 3 3 3 e 4 4 4 e f . . 
+            . . f 3 3 3 3 3 3 3 3 3 3 3 f . 
+            . . f 3 3 3 3 e b 3 e e 3 3 f . 
+            . . f 3 3 3 3 f f e e e 3 3 f . 
+            . f f b b b b f b f e e e f . . 
+            . f b b b b b e 1 f 4 4 e . . . 
+            . f b b b b b f 4 4 4 4 f . . . 
+            . . f b b b 4 4 e d d d f . . . 
+            . . . f f f 4 4 e d d d f . . . 
+            . . . f b b e e b b d d d f . . 
+            . . . . f b d d 1 d 1 d b f . . 
+            . . . . . f f f b b f f f . . . 
+            `],
+        100,
+        true
+        )
+    } else {
+        animation.runImageAnimation(
+        hero,
+        [img`
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e 4 d d d d f . . . 
+            . . . . f f e e 4 4 4 e f . . . 
+            . . . . . 4 d d e 2 2 2 f . . . 
+            . . . . . e d d e 2 2 2 f . . . 
+            . . . . . f e e f 4 5 5 f . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . . . . f f f . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e e e d d d f . . . 
+            . . . . . f 4 d d e 4 e f . . . 
+            . . . . . f e d d e 2 2 f . . . 
+            . . . . f f f e e f 5 5 f f . . 
+            . . . . f f f f f f f f f f . . 
+            . . . . . f f . . . f f f . . . 
+            `,img`
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e 4 d d d d f . . . 
+            . . . . f f e e 4 4 4 e f . . . 
+            . . . . . 4 d d e 2 2 2 f . . . 
+            . . . . . e d d e 2 2 2 f . . . 
+            . . . . . f e e f 4 5 5 f . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . . . . f f f . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . f f f f f f . . . . 
+            . . . . f f e e e e f 2 f . . . 
+            . . . f f e e e e f 2 2 2 f . . 
+            . . . f e e e f f e e e e f . . 
+            . . . f f f f e e 2 2 2 2 e f . 
+            . . . f e 2 2 2 f f f f e 2 f . 
+            . . f f f f f f f e e e f f f . 
+            . . f f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 1 f d d e f . . 
+            . . . f e e e 4 d d d d f . . . 
+            . . . . 4 d d e 4 4 4 e f . . . 
+            . . . . e d d e 2 2 2 2 f . . . 
+            . . . . f e e f 4 4 5 5 f f . . 
+            . . . . f f f f f f f f f f . . 
+            . . . . . f f . . . f f f . . . 
+            `],
+        100,
+        true
+        )
+    }
 })
 function setupHero () {
     hero = sprites.create(img`
@@ -462,6 +811,7 @@ function setupHero () {
     controller.moveSprite(hero, 100, 0)
     hero.ay = 500
     scene.cameraFollowSprite(hero)
+    hero.z = 9
 }
 function createCoins (col: number, row: number) {
     coin = sprites.create(img`
@@ -547,6 +897,28 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     info.changeScoreBy(50)
     music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
 })
+function createBlocks (col: number, row: number) {
+    girlblock = sprites.create(img`
+        . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+        . 3 3 3 3 3 3 3 3 3 3 3 3 3 3 . 
+        `, SpriteKind.Player)
+    tiles.placeOnTile(girlblock, tiles.getTileLocation(col, row))
+    tiles.setWallAt(tiles.getTileLocation(col, row), true)
+}
 function setupLevel1 () {
     tiles.setCurrentTilemap(tilemap`level1`)
     tiles.placeOnTile(hero, tiles.getTileLocation(0, 6))
@@ -558,21 +930,37 @@ function setupLevel1 () {
     createCoins(10, 2)
     createCoins(12, 2)
     createCoins(14, 2)
-    createFlag(24, 6)
+    createForest(27, 28, 29)
+    if (secondStage) {
+        createForest2(40, 46, 47)
+    } else {
+        createFlag(34, 6)
+    }
     createEnemy(sprites.create(assets.image`snake`, SpriteKind.Enemy), 11, 6)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
+    scene.cameraShake(4, 500)
     pause(100)
     music.play(music.melodyPlayable(music.wawawawaa), music.PlaybackMode.InBackground)
-    setupLevel1()
+    tiles.placeOnTile(hero, tiles.getTileLocation(0, 6))
     sprites.destroy(otherSprite)
 })
+let girlblock: Sprite = null
 let coin: Sprite = null
 let snake: Sprite = null
+let singlemushroom: Sprite = null
+let mushroompatch: Sprite = null
+let treegirla: Sprite = null
+let secondStage = 0
+let isInHole = 0
 let flag: Sprite = null
 let hero: Sprite = null
 let maxNumOfJumps = 0
+let treesC: Sprite = null
+let treesB: Sprite = null
+let treesA: Sprite = null
+let isGirl = 0
 let jumpCount = 0
 setupGame()
 setupHero()
